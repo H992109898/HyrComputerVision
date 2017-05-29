@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8"> 
+   	<title>应用案例</title>
+  	<style>
+  		
+  		a.navFont{
+   			font-size: 150%;
+   		}
+   		
+  	</style>
+  	<link rel="icon" href="static/img/眼睛.png" type="image/x-icon">
+   	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+   	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="static/js/product.js"></script>
+	<script src="static/js/checkStatus.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+
+<body style="background: #F0F8FF;">
+	<div class="container">
+		<!--
+        	作者：992109898@qq.com
+        	时间：2017-05-05
+        	描述：顶部
+        -->
+		<div class="row" style="text-align: center;">
+			<div class="col-md-3" style="font-size: 150%; margin-top: .2cm;">
+				<img src="static/img/眼睛.png" width="50px" height="50px"/>Hyr
+				
+			</div>
+			<div style="float: right; margin-top: .5cm;">
+				<input type="button" onclick="location.href='price.html'"  value="免费尝试" style="width:100px; height:30px;border:none;background: #FFFF00;"/>
+				<a onclick="clickMyAccount()" href="#" style="margin-left: 10px;">我的账户
+					<span class="glyphicon glyphicon-user"></span>
+				</a>
+			</div>
+		</div>
+	
+	</div>
+	
+	<!--
+    	作者：992109898@qq.com
+                 时间：2017-05-05
+                 描述：导航栏
+    -->
+		
+	<nav class="navbar navbar-default" role="navigation" 
+				style="border: none; margin: 0;">
+									
+		<div class="container-fluid">
+					
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li>
+					
+					<li><a href="index.html" class="navFont">主页</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #20B2AA; font-size: 150%;">API<b class="caret"></b></a>
+					<ul class="dropdown-menu" style="background: #F0F8FF; border: none;">
+						<li><a href="emotion.html" style="color: #20B2AA;">表情识别</a></li>
+						<li><a href="object.html" style="color: #20B2AA;">物品识别</a></li>
+						<li><a href="face.html" style="color: #20B2AA;">人脸识别</a></li>
+						<li><a href="carPlate.html" style="color: #20B2AA;">车牌识别</a></li>
+					</ul>
+					</li>
+							
+						<li><a href="app.html" class="navFont">应用</a></li>
+						<li><a href="document.html" class="navFont">文档</a></li>
+						<li><a href="price.html" class="navFont">价格</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>		
+	
+	<div style="border-top:white 0.00001px solid; background-image: url(static/img/APP/app.jpg); height: 400px; background-size: cover; vertical-align: middle;">
+		
+		<div style="margin: 50px 0 20px 1200px; background: rgba(88, 88, 88, 0.65); color:white;width: 300px; height: 320px; ">
+			<div style="margin: 20% auto auto 10%; ">
+				<style>
+					p{font-size: 120%;}
+				</style>
+				<br /><br />
+				<br />
+				<p style="font-weight: bold; font-size: 150%;">展示：</p>
+				<br />
+				<p>1.汇聚智能应用</p>
+				<p>2.开启智能时代</p>
+				<p>3.为智能应用提供底层服务</p>
+				<br />
+			</div>
+		</div>
+		
+	</div>
+	
+	<div style="text-align: center;">
+		
+		<div style="display: inline-block;">
+			<a href="https://github.com/H992109898/Emotion_Recognition/">
+			<div style="display: inline-block; margin:150px 100px 15px 100px">
+				<img src="static/img/APP/emotionWatcher.png" />
+			</div>
+			</a>
+			<div style="display: inline-block; vertical-align: top;
+				 width:450px; height: 450px; background: #E0FFFF; 
+				 margin:150px 100px 15px 100px; text-align: left;
+				 padding: 20px 20px 20px 20px; font-size: 120%;	color: #483D8B; line-height: 40px;">
+				<h3 style="font-size: 170%;">多模型情绪识别智能看护小管家</h3>
+				<br />
+				<p>&nbsp; 致力于通过多模态的情绪信息来进行智能看护，帮助用户管理情绪，
+					查看情绪状况。</p>
+				<p>适用人群：想进一步了解自己情绪的人</p>
+				<p style="font-size: 80%;">所用API：表情识别，人脸识别</p>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div style="background: #D3D3D3;  height: 250px; text-align: center; margin-top: 3cm;">
+		<p style="font-size: 250%;">从今天开始</p>
+		<p>开启人工智能新时代</p>
+		<p>我们提供免费的注册，并且有免费的服务试用，若对我们的服务感兴趣，可以进一步商议价格</p>
+		<p style="margin-bottom: 1.5cm;">让APP更加智能</p>
+		<input type="button" onclick="location.href='registered.html'" style="background: yellow; border: none; height: 30px; width: 120px;  margin-right: 2.2cm;" value="免费注册"/>
+		<input onclick="location.href='price.html'" type="button" style="color:white;background: blueviolet; border: none;height: 30px; width: 120px;" value="查看价格"/>
+	</div>
+</body>
+</html>

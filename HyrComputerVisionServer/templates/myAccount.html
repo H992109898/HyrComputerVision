@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html style="height: 100%;">
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		
+		<link rel="icon" href="static/img/眼睛.png" type="image/x-icon">
+	   	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+   		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+		<script src="static/js/checkStatus.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		<script type="text/javascript" src="static/js/configuration.js" ></script>		
+		<script type="text/javascript" src="static/js/buyProduct.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+		<script>
+		$().ready(function() {
+			
+			setUserData();
+			setBuyRecord();
+			$("#rpassword").hide();
+		
+			$("#personal_form").validate({
+				rules: {
+					username: "required",
+					password: {
+						required: true,
+						minlength: 6
+					},
+					rpassword: {
+						equalTo: "#personal_password"
+					},
+					email: {
+						required: true,
+						email: true	
+					}
+				},
+				messages: {
+					username: "请输入用户名",
+					password: {
+						required: "请输入密码",
+						minlength: "密码不能小于6个字符"
+					},
+					rpassword: {
+						equalTo: "两次密码不一样"
+					},
+					email: {
+						required: "请输入邮箱",
+						email: "请输入有效邮箱"
+					}
+				}
+			});
+			
+		
+		});
+		
+		function setUserData(){
+			var formData = new FormData();
+	        formData.append("init_data", true);
+			formData.append("username", $.cookie("username"));
+			$.ajax({
+	            type: "POST",
+	            url: server_url+"/myaccount_server",
+	            data: formData,
+	            processData : false,  
+	            cache: false,
+	            //必须false才会自动加上正确的Content-Type   
+	            contentType : false,
+	            success:function(jsonData) {
+	            	var data = $.parseJSON(jsonData);
+	            	$("input[name='username']").attr("value", data.username);
+					$("input[name='password']").attr("value", data.password);
+					$("input[name='email']").attr("value", data.email);
+					$("#username_under_head").html(data.username);
+					$("#head").attr("src", server_url+ data.head_url);
+	            },
+	      });
+		}
+		
+		function clickModify(){
+			$("#rpassword").show();
+			$("input[name='password']").attr("disabled", false);
+			$("input[name='email']").attr("disabled", false);
+			$("input[name='rpassword']").attr("disabled", false);
+		}
+		
+		function clickSave(){
+			var formData = new FormData();
+	        formData.append("change_info", true);
+	        formData.append("username", $.cookie("username"));
+	        formData.append("password", $("input[name='rpassword']").val());
+	        formData.append("email", $("input[name='email']").val());
+			$.ajax({
+	            type: "POST",
+	            url: server_url+"/myaccount_server",
+	            data: formData,
+	            processData : false,  
+	            cache: false,
+	            //必须false才会自动加上正确的Content-Type   
+	            contentType : false,
+	            success:function(data) {
+	            	
+     			},    
+	        });
+			$("#rpassword").hide();
+			$("input[name='password']").attr("disabled", true);
+			$("input[name='email']").attr("disabled", true);
+		}
+		
+		function clickLogout(){
+			removeUserInfo();
+			location.href='index.html';
+		}
+		
+		function changeHead(){
+			
+			var head = $("#change_head_bnt").get(0).files[0];
+	        
+	        var formData = new FormData();
+	        formData.append("img" , head);
+	        formData.append("change_head", true);
+			formData.append("username", $.cookie("username"));
+			$.ajax({
+	            type: "POST",
+	            url: server_url+"/myaccount_server",
+	            data: formData,
+	            processData : false,  
+	            cache: false,
+	            //必须false才会自动加上正确的Content-Type   
+	            contentType : false,
+	            success:function(data) {    
+        			if(data==1){  
+        				$("#head").attr("src",window.URL.createObjectURL(head));    
+        			}else{    
+            			
+        			}
+     			},    
+	        });
+		}
+		</script>
+	
+	<style>
+		#tab{
+			width:200px;
+			display: inline-block;
+		
+		}
+		
+		html, body{
+			width:100%;
+			height: 100%;
+			text-align: center;
+		}
+	</style>
+
+	</head>
+	<body style="background:#FFFFF0; height: 100%;">
+		<!--
+        	作者：992109898@qq.com
+        	时间：2017-05-11
+        	描述：左边菜单
+        -->
+        <style>
+				.file {
+				    position: relative;
+				    display: inline-block;
+				    background: red;
+				    border: 1px solid #99D3F5;
+				    padding: 0px 0px;
+				    overflow: hidden;
+				    color: #1E88C7;
+				    text-decoration: none;
+				    text-indent: 0;
+				    line-height: 20px;
+				    vertical-align: top;
+				    border-radius:50%;
+				    background: black; 
+				}
+				.file input {
+				    position: absolute;
+				    font-size: 100px;
+				    
+				    right: 0;
+				    top: 0;
+				    opacity: 0;
+				}
+				.file:hover {
+				    background: #AADFFD;
+				    border-color: #78C3F3;
+				    color: #004974;  
+				    text-decoration: none;
+				}
+			</style>
+		<div style="display: inline-block; float: left; background: black; height: 100%;">
+			<ul id="tab" class="nav nav-pills nav-stacked">
+				<li style="text-align: center;">
+					<div href="javascript:;" class="file" 
+						style="padding: 0; margin:20px 20px 20px 20px">
+						
+						<img class="img-circle thumbnail img-responsive"
+							 style="width:150px; height: 150px; border-radius:50%; margin: 0;" id="head"
+							   />
+						<input accept="image/*" id="change_head_bnt" type="file" onchange="changeHead()"/>
+					</div>
+				</li>
+				
+				<li style="text-align: center;">
+					<div id="username_under_head" style="color: white; font-size: 200%; margin-bottom: 50px;">
+						Admin
+					</div>
+				</li>
+				<li class="active">
+					<a href="#myBuy" data-toggle="tab">我的购买</a>
+				</li>
+				<li><a href="#personal_info" data-toggle="tab">个人资料</a></li>
+			</ul>
+		</div>
+		
+		<!--
+        	作者：992109898@qq.com
+        	时间：2017-05-11
+        	描述：顶部
+        -->
+		<div style="width: 100%; height: 100px; background: #F8F8FF;">
+			<input type="button" onclick="clickLogout()" 
+				class="btn" value=" 退出登录 " 
+				style="float: right; background:#F0F8FF; margin: 23px 30px 10px 10px;"/>
+			<input type="button" onclick="location.href='index.html'" 
+				class="btn" value=" 返回主页 " 
+				style="float: right; background:#40E0D0; color: white; margin: 23px 10px 10px 10px;"/>     
+			<div style="float: right; margin: 10px 10px 10px 10px;">
+				<img src="static/img/眼睛.png" width="60px" height="60px"/>
+			</div>
+		</div>
+	
+		<div class="tab-content" style="text-align: center;">
+		<!--
+        	作者：992109898@qq.com
+        	时间：2017-05-11
+        	描述：购买
+        -->
+		
+		<div class="tab-pane fade in active" id="myBuy" 
+			style="margin: 60px auto;">
+			 
+			<table id="personal_buy_table"; style=" font-size: 150%; text-align: center; margin: auto;">
+				
+				<thead>
+					<tr>
+						<style type="text/css">
+							th, tr{
+								width: 200px;
+								text-align: center;
+								line-height: 50px;
+							}
+						</style>	
+						<th>名称</th>
+						<th>购买时间</th>
+						<th>到期时间</th>
+						<th>剩余数量</th>
+						<th>Key</th>
+					</tr>
+				</thead>
+				<tbody id="personal_buy_table_body">
+
+				</tbody>
+			</table>
+			
+		</div>
+		
+		
+		<div class=" tab-pane fade" id="personal_info" 
+			style="text-align: left;">  
+	        
+	        <div class="form row" style="margin: 50px auto;">  
+	            <form class="form-horizontal col-sm-offset-4 col-md-offset-4" id="personal_form">  
+	                <h3 class="form-title">个人资料</h3>  
+	                <div class="col-sm-9 col-md-9">
+	                    <div class="form-group"> 
+	                    	<p>用户名</p>
+	                        <input class="form-control" type="text" name="username" autofocus="autofocus" maxlength="20" disabled/>  
+	                    </div>
+	                    
+	                    <div class="form-group">
+	                    	<p>密码</p>
+	                        <input Id='personal_password' class="form-control" type="password" name="password" disabled/>  
+	                    </div>  
+	                    
+	                    <div id="rpassword" class="form-group">
+	                    	<p>再输入密码</p>
+	                        <input class="form-control" type="password" name="rpassword" disabled/>  
+	                    </div>  
+	                    
+	                    
+	                    <div class="form-group">
+	                     	<p>邮箱</p> 
+	                        <input class="form-control" type="email" name="email"  disabled/>  
+	                    </div>
+	                    <div class="form-group" style="display: inline-block; float: left;">  
+	                        <input type="button" onclick="clickModify()" class="btn btn-success" value=" 修改 "/>     
+	                    </div>  
+	                    <div class="form-group" style="display: inline-block; float: right;">  
+	                        <input type="button" onclick="clickSave()" class="btn btn-success pull-right" value=" 保存 "/>     
+	                    </div>  
+	                </div>  
+	            </form>  
+	        </div>  
+    	</div> 
+    	</div>
+	</body>
+</html>

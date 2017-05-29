@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8"> 
+   	<title>登录</title>
+   	<style>	  
+		.checkbox{padding-left:21px;}  
+   	</style>
+   	
+   	<link rel="icon" href="static/img/眼睛.png" type="image/x-icon">
+   	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  	
+   	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+	<script type="text/javascript" src="static/js/checkStatus.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="static/js/configuration.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+	<script>
+		$().ready(function() {
+			
+			//加载表单输入验证
+    		$("#login_form").validate({  
+        		rules: {  
+            		username: "required",  
+            		password: {  
+                		required: true,  
+                		minlength: 6
+            		},  
+        		},  
+	        	messages: {  
+	            	username: "请输入用户名",  
+	            	password: {  
+	                	required: "请输入密码",  
+	                	minlength: "密码不能小于6个字符" 
+	            	},  
+	        	}  
+    		});
+    		
+    		//加载cookie
+    		if ($.cookie("rememberPassword") == "true") {
+		        $("#rememberPassword").attr("checked", true);
+		        $("#username").val($.cookie("username"));
+		        $("#password").val($.cookie("password"));
+		    }
+    		
+    		//监听提交事件
+    		$("#login_bnt").click(function(e){
+    			var loginSuccessful = false;
+    			var jsonData = $.toJSON({
+    				username:$("#username").val(),
+    				password:$("#password").val()
+    			});
+    			$.post(server_url+"/login", 
+    			 	jsonData,
+    				function(data, status){
+    					if(data == 1){
+    						if ($("#rememberPassword").prop("checked") == true) {
+				    			saveUserInfo();    
+				    		}
+				    		else {
+				        		removeUserInfo();
+				    		}
+				    		$.cookie("username", $("#username").val(), { expires: 1 });
+						    location.href="index.html";
+    					}else if(data == 0){
+    						alert("用户名密码错误");
+    						$("#username").val("");
+    						$("#password").val("");
+    					}
+    				},'json');
+					
+			});
+		});
+    	
+		
+	</script>
+</head>
+
+<body style="background-image: url(static/img/loginAndRegisteredBackground.png); color:white;background-size: cover;">
+	<div style="text-align: center;">
+		<a href="index.html"><img src="static/img/眼睛.png"/></a>
+	</div>
+	<div class="container">  
+        <div class="form row" >  
+            <form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form" >  
+                <h3 class="form-title">登录</h3>  
+                <div class="col-sm-9 col-md-9">  
+                    <div class="form-group"> 
+                        <input id="username" class="form-control required" type="text" placeholder="用户名" name="username" autofocus="autofocus" maxlength="20"/>  
+                    </div>  
+                    <div class="form-group">  
+                            <input id="password" class="form-control required" type="password" placeholder="密码" name="password" maxlength="8"/>  
+                    </div>  
+                    <div class="form-group">  
+                        <label class="checkbox">  
+                            <input id="rememberPassword" type="checkbox" name="rememberPassword" value="1"/> Remember me  
+                        </label>  
+                        <hr />  
+                        <a href="registered.html" style="color: white;" id="register_btn" >没有账号？</a>  
+                    </div>  
+                    <div class="form-group" style="display: inline-block; float: right;">  
+                        <input id="login_bnt" type="button" class="btn btn-success pull-right" value="Login "/>     
+                    </div>  
+                </div>  
+            </form>  
+        </div>  
+  
+    </div>  
+    
+</body>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8"> 
+   	<title>价格</title>
+  	<style>
+  		.buy {
+  			border: none; color: white; background: #66CDAA; width: 100px; 
+  		}
+  		
+  		a.navFont{
+   			font-size: 150%;
+   		}
+  	</style>
+  	<link rel="icon" href="static/img/眼睛.png" type="image/x-icon">
+   	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+   	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="static/js/checkStatus.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="static/js/buyProduct.js" ></script>
+	<script src="static/js/configuration.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+	<script>
+		$().ready(function(){
+		
+		});
+		
+		
+	</script>
+</head>
+<body style="background: #F0F8FF;">
+	<div class="container">
+		<!--
+        	作者：992109898@qq.com
+        	时间：2017-05-05
+        	描述：顶部
+        -->
+		<div class="row" style="text-align: center;">
+			<div class="col-md-3" style="font-size: 150%; margin-top: .2cm;">
+				<img src="static/img/眼睛.png" width="50px" height="50px"/>Hyr
+				
+			</div>
+			<div style="float: right; margin-top: .5cm;">
+				<input type="button" onclick="location.href='price.html'" value="免费尝试" style="width:100px; height:30px;border:none;background: #FFFF00;"/>
+				<a onclick="clickMyAccount()" href="#" style="margin-left: 10px;">我的账户
+					<span class="glyphicon glyphicon-user"></span>
+				</a>
+			</div>
+		</div>
+	
+	</div>
+	
+	<!--
+    	作者：992109898@qq.com
+                 时间：2017-05-05
+                 描述：导航栏
+    -->
+		
+	<nav class="navbar navbar-default" role="navigation" 
+				style="border: none; margin: 0;">
+									
+		<div class="container-fluid">
+					
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li><li><a></a></li>
+					
+					<li><a href="index.html" class="navFont">主页</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #20B2AA; font-size: 150%;">API<b class="caret"></b></a>
+					<ul class="dropdown-menu" style="background: #F0F8FF; border: none;">
+						<li><a href="emotion.html" style="color: #20B2AA;">表情识别</a></li>
+						<li><a href="object.html" style="color: #20B2AA;">物品识别</a></li>
+						<li><a href="face.html" style="color: #20B2AA;">人脸识别</a></li>
+						<li><a href="carPlate.html" style="color: #20B2AA;">车牌识别</a></li>
+					</ul>
+					</li>
+							
+						<li><a href="app.html" class="navFont">应用</a></li>
+						<li><a href="document.html" class="navFont">文档</a></li>
+						<li><a href="price.html" class="navFont">价格</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>		
+	
+	<div style="background-image: url(static/img/price/Pricing（large）.jpg); height: 400px;">
+		
+		<div style="margin: 0 0 0 400px ;color:white;border-top: 1px groove; width: 300px; height: 400px;">
+			
+			<p style="margin: 100px 0 0 0px ; font-size: 200%;">价格</p>
+			<br />
+			<p>对价格有疑问？</p>
+			<p>不要犹豫</p>
+			<p>请联系我们</p>
+			<br />
+			<input type="button" style="color: white; font-size: 150%; background:#6A5ACD; border: none; width: 150px; height: 40px;" value="联系我们" />
+		</div>
+		
+	</div>
+	
+	<div class="container" style="margin-top: 1cm;">
+		<div class="center-block">
+			<table class="table" style="font-size: 150%; text-align: center;">
+				<thead>
+					<tr>
+						<style>
+							th{text-align: center;}
+						</style>
+						<th>API</th>
+						<th>收费方式</th>
+						<th>限制</th>
+						<th>价格</th>
+						<th>选择</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>表情识别</td>
+						<td>免费<br><br><br>标准</td>
+						<td>100 次/月<br><br><br>无限</td>
+						<td>0 yuan/月<br><br><br>15 yuan/月</td>
+						
+						<td><input type="button" onclick="clickBuy('emotion', 'free')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br>
+						     <input type="button" onclick="clickBuy('emotion', 'standard')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br />
+						</td>
+					</tr>
+					<tr>
+						<td>物品识别</td>
+						<td>免费<br><br><br>标准</td>
+						<td>100 次/月<br><br><br>无限</td>
+						<td>0 yuan/月<br><br><br>15 yuan/月</td>
+						<td><input type="button" onclick="clickBuy('obj', 'free')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br>
+						     <input type="button" onclick="clickBuy('obj', 'standard')" data-toggle="modal" data-target="#confirm_modal"value="购买" class="buy">
+						     <br><br><br />
+						</td>
+					</tr>
+					<tr>
+						<td>人脸识别</td>
+						<td>免费<br><br><br>标准</td>
+						<td>100 次/月<br><br><br>无限</td>
+						<td>0 yuan/月<br><br><br>15 yuan/月</td>
+						<td><input type="button" onclick="clickBuy('face', 'free')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br>
+						     <input type="button" onclick="clickBuy('face', 'standard')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br />
+						</td>
+					</tr>
+					<tr>
+						<td>车牌识别</td>
+						<td>免费<br><br><br>标准</td>
+						<td>100 次/月<br><br><br>无限</td>
+						<td>0 yuan/月<br><br><br>15 yuan/月</td>
+						<td><input type="button" onclick="clickBuy('carPlate', 'free')" data-toggle="modal" data-target="#confirm_modal" value="购买" class="buy">
+						     <br><br><br>
+						     <input type="button" onclick="clickBuy('carPlate', 'standard')" data-toggle="modal" data-target="#confirm_modal"value="购买" class="buy">
+						     <br><br><br />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	
+	<!-- 确认模态框（Modal） -->
+<div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="text-align: center;background: #F5F5F5;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">套餐类型</h4>
+      </div>
+      <div class="modal-body" style="display: inline-block; ">
+      	<table id="product_type_table">
+      	
+      		
+      	</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" 
+        	style="background: #00BFFF; color: white;" 
+        	data-dismiss="modal" onclick="click_comfirm()">
+        	确认
+        </button>
+        <style type="text/css">
+        	.comfirm_td{}
+        </style>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+</body>
+</html>

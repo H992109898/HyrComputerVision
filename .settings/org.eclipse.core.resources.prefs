@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//HyrComputerVisionServer/HyrComputerVision/database_model/user.py=utf-8
+encoding//HyrComputerVisionServer/HyrComputerVision/database_model/user_product.py=utf-8
+encoding//HyrComputerVisionServer/HyrComputerVision/migrations/0001_initial.py=utf-8
+encoding//HyrComputerVisionServer/HyrComputerVision/product/emotion/gabor_nn_clf.py=utf8
+encoding//HyrComputerVisionServer/HyrComputerVision/product/emotion/predict.py=utf8
+encoding//HyrComputerVisionServer/HyrComputerVision/product/face/landmark.py=utf8
+encoding//HyrComputerVisionServer/HyrComputerVision/product/face/predict.py=utf8
+encoding//HyrComputerVisionServer/HyrComputerVision/product/model_for_detect/model.py=utf-8
+encoding//HyrComputerVisionServer/HyrComputerVisionServer/settings.py=utf-8
